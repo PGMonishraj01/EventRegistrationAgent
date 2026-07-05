@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Event Agent - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <header class="dashboard-header">
+            <div class="header-left">
+                <div class="profile-trigger" id="profile-trigger" title="User Profile">U</div>
+                <div class="logo-text">AI Event Agent</div>
+
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <div class="profile-details">
+                        <div class="user-name" id="user-name">User Name</div>
+                        <div class="user-email" id="user-email">email@domain.com</div>
+                        <div class="user-industry" id="user-industry">Industry: Technology</div>
+                    </div>
+                    <button class="logout-btn" id="logout-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+                        </svg>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="notification-center-container">
+                    <button id="notification-btn" class="notification-btn" title="Event Reminders">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="notification-badge" id="notification-badge" style="display: none;">0</span>
+                    </button>
+                    <div class="notification-dropdown" id="notification-dropdown">
+                        <div class="notification-header">
+                            <h3>Reminders & Notifications</h3>
+                            <button id="clear-notifications-btn" class="clear-notifications-btn" type="button">Mark read</button>
+                        </div>
+                        <div class="notification-list" id="notification-list">
+                            <div class="notification-empty">No upcoming event reminders.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Light/Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="workspace-container">
+            <section class="left-panel">
+                <div class="dashboard-tabs">
+                    <button type="button" class="tab-btn active" id="tab-btn-home">Home</button>
+                    <button type="button" class="tab-btn" id="tab-btn-chat">AI Chatbot</button>
+                    <button type="button" class="tab-btn" id="tab-btn-register">Register Event</button>
+                    <button type="button" class="tab-btn" id="tab-btn-organize">Organize Event</button>
+                </div>
+
+                <div class="panel-view active" id="view-home">
+                    <div class="home-launchpad">
+                        <div class="launchpad-hero">
+                            <div class="launchpad-copy">
+                                <span class="launchpad-eyebrow">Post-login workspace</span>
+                                <h1>Choose what you want to do after login.</h1>
+                                <p>
+                                    Institutions and organizations can create events here, and attendees can browse available events and register with help from the AI assistant.
+                                </p>
+                            </div>
+                            <div class="launchpad-user-card">
+                                <span class="launchpad-user-label">Signed in as</span>
+                                <strong id="launchpad-user-name">User</strong>
+                                <span id="launchpad-user-industry">Industry: Technology</span>
+                            </div>
+                        </div>
+
+                        <div class="launchpad-grid">
+                            <button type="button" class="launchpad-card" id="launchpad-organize-btn">
+                                <span class="launchpad-card-tag">Institution / Organization</span>
+                                <h2>Organize a new event</h2>
+                                <p>Open the organizer page, type all event details, and use AI suggestions to fill the form faster.</p>
+                                <span class="launchpad-card-action">Go to organizer page</span>
+                            </button>
+
+                            <button type="button" class="launchpad-card" id="launchpad-register-btn">
+                                <span class="launchpad-card-tag">Participant / Visitor</span>
+                                <h2>Register for an event</h2>
+                                <p>See the available events, explore the live list, and get AI recommendations before you register.</p>
+                                <span class="launchpad-card-action">Go to registration page</span>
+                            </button>
+
+                            <button type="button" class="launchpad-card launchpad-card-ai" id="launchpad-chat-btn">
+                                <span class="launchpad-card-tag">AI Assistant</span>
+                                <h2>Open the main AI chat</h2>
+                                <p>Use the full assistant for recommendations, planning, checklists, and quotation help.</p>
+                                <span class="launchpad-card-action">Open AI chat</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-view" id="view-chat">
+                    <div class="chat-container" id="chat-container">
+                        <div class="chat-bubble ai">
+                            <div class="bubble-sender">AI Assistant</div>
+                            <div class="bubble-content">
+                                <h3>Welcome to the Event Registration Agent</h3>
+                                <p>I'm here to help you design, organize, and register for events.</p>
+                                <ul class="features-list">
+                                    <li>
+                                        <span class="feature-tick">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span>Type <strong>suggest</strong> or <strong>today</strong> for event recommendations.</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-tick">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span>Type <strong>organize</strong> or <strong>plan</strong> to generate an event checklist.</span>
+                                    </li>
+                                    <li>
+                                        <span class="feature-tick">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span>Type <strong>quote</strong> or <strong>cost</strong> to draft a budget breakdown.</span>
+                                    </li>
+                                </ul>
+                                <p>You can also use the quick selectors below.</p>
+
+                                <div class="quick-selectors-section">
+                                    <p class="quick-selector-title">What type of event are you looking for?</p>
+                                    <div class="quick-selectors-grid">
+                                        <button type="button" class="event-pill" data-event="Technology Summit">Technology Summit</button>
+                                        <button type="button" class="event-pill" data-event="Educational Seminar">Educational Seminar</button>
+                                        <button type="button" class="event-pill" data-event="Corporate Meeting">Corporate Meeting</button>
+                                        <button type="button" class="event-pill" data-event="Social Celebration">Social Celebration</button>
+                                        <button type="button" class="event-pill" data-event="Sports Tournament">Sports Tournament</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-input" class="chat-input" placeholder="Type your message here... (e.g. 'suggest today', 'plan organize')" autocomplete="off">
+                        <button id="send-btn" class="send-btn" title="Send Message">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-view" id="view-register">
+                    <div class="browse-panel-header">
+                        <div>
+                            <h2 class="browse-title">Available Events for Registration</h2>
+                            <p class="panel-helper-text">See the live event list here, then click the AI assistant if you want personalized suggestions.</p>
+                        </div>
+                        <button type="button" class="browse-ai-btn" id="browse-ai-btn">Ask AI for Suggestions</button>
+                    </div>
+                    <div class="events-scroll-container">
+                        <div class="events-grid" id="events-grid"></div>
+                    </div>
+                </div>
+
+                <div class="panel-view" id="view-organize">
+                    <div class="organize-form-container">
+                        <div class="organize-form-header">
+                            <div>
+                                <h2 class="organize-form-title">Organize / Host a New Event</h2>
+                                <p class="panel-helper-text">Type all event details manually, or click the AI assistant to generate suggestions and auto-fill the form.</p>
+                            </div>
+                            <button type="button" class="ai-copilot-btn" id="ai-copilot-btn">Open AI Assistant</button>
+                        </div>
+
+                        <form id="organize-event-form" class="organize-grid-form">
+                            <div class="form-group full-width">
+                                <label for="form-event-name">Event Name *</label>
+                                <input type="text" id="form-event-name" required placeholder="e.g. Prompt Engineering Masterclass">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-category">Category *</label>
+                                <select id="form-category" required>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Software Engineering">Software Engineering</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Management">Management</option>
+                                    <option value="Networking">Networking</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <input type="text" id="form-category-custom" class="organize-textarea" placeholder="Type your own category" style="display:none; margin-top:0.6rem;">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-organizer">Organizer / Institution *</label>
+                                <input type="text" id="form-organizer" required placeholder="e.g. Stanford University Computer Club">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="form-description">Description</label>
+                                <textarea id="form-description" rows="3" class="organize-textarea" placeholder="Brief outline of the event curriculum or targets..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-date">Event Date *</label>
+                                <input type="date" id="form-date" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-time">Start Time</label>
+                                <input type="text" id="form-time" placeholder="e.g. 10:00 AM">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-venue">Venue *</label>
+                                <input type="text" id="form-venue" required placeholder="e.g. Tech Hall B or Online">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-duration">Duration</label>
+                                <input type="text" id="form-duration" placeholder="e.g. 1 Day or 3 Hours">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-fee">Registration Fee (INR) *</label>
+                                <input type="number" id="form-fee" required min="0" step="any" value="0.0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-seats">Available Seats *</label>
+                                <input type="number" id="form-seats" required min="1" value="50">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="form-audience">Target Audience</label>
+                                <input type="text" id="form-audience" placeholder="e.g. Students, Backend Developers">
+                            </div>
+
+                            <div class="organize-form-footer">
+                                <button type="submit" class="host-event-btn">Host Event Live</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="right-panel">
+                <div class="sidebar-calendar-card">
+                    <div class="calendar-header-bar">
+                        <button type="button" id="prev-month-btn" class="calendar-nav-btn">&lt;</button>
+                        <h3 id="calendar-month-year">July 2026</h3>
+                        <button type="button" id="next-month-btn" class="calendar-nav-btn">&gt;</button>
+                    </div>
+
+                    <div class="calendar-grid-container">
+                        <div class="calendar-weekdays">
+                            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                        </div>
+                        <div class="calendar-days-grid" id="calendar-days-grid"></div>
+                    </div>
+
+                    <div class="calendar-details-panel" id="calendar-details-panel">
+                        <div class="selected-date-title" id="selected-date-title">July 5, 2026</div>
+                        <div class="occasion-badge" id="occasion-badge">No special occasion today</div>
+                        <div class="recommendation-card" id="calendar-recommendation-card">
+                            <p id="calendar-recommendation-text">Select any date on the calendar to see special suggestions.</p>
+                            <button type="button" id="calendar-ask-ai-btn" class="calendar-action-btn" style="display: none;">Ask AI to Recommend Events</button>
+                        </div>
+                    </div>
+
+                    <div class="upcoming-events-panel">
+                        <h4>Upcoming Special Events</h4>
+                        <div class="upcoming-events-list" id="upcoming-events-list"></div>
+                    </div>
+                </div>
+
+                <div class="sidebar-history-card">
+                    <div class="sidebar-header">
+                        <h2>Event History</h2>
+                        <p>Archive of generated sessions</p>
+                    </div>
+                    <div class="history-list" id="history-list">
+                        <div class="history-empty-state" id="history-empty-state">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <p>No history records found yet.</p>
+                            <p class="history-empty-subtext">Archived recommendations, checklists, and quotations will display here.</p>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <div class="assistant-drawer" id="assistant-drawer" aria-hidden="true">
+        <div class="assistant-backdrop" id="assistant-backdrop"></div>
+        <section class="assistant-panel" aria-labelledby="assistant-title">
+            <div class="assistant-panel-header">
+                <div>
+                    <div class="assistant-context-label" id="assistant-context-label">AI Assistant</div>
+                    <h2 id="assistant-title">Need suggestions?</h2>
+                </div>
+                <button type="button" class="assistant-close-btn" id="assistant-close-btn" aria-label="Close assistant">x</button>
+            </div>
+
+            <p class="assistant-panel-description" id="assistant-panel-description">
+                Tell the assistant what you need and it will suggest the next best step.
+            </p>
+
+            <label class="assistant-label" for="assistant-prompt-input">What should the AI help with?</label>
+            <textarea id="assistant-prompt-input" class="assistant-prompt-input" rows="6" placeholder="Describe the event idea or the kind of events you want to register for..."></textarea>
+
+            <div class="assistant-panel-actions">
+                <button type="button" class="assistant-run-btn" id="assistant-run-btn">Generate Suggestions</button>
+                <button type="button" class="assistant-secondary-btn" id="assistant-chat-jump-btn">Open Full Chat</button>
+            </div>
+
+            <div class="assistant-status" id="assistant-status"></div>
+            <div class="assistant-result" id="assistant-result">
+                <p>Suggestions will appear here after you click the assistant.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/calendar.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/history.js"></script>
+</body>
+</html>

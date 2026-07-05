@@ -1,0 +1,21 @@
+# Server Config
+server.port=8081
+
+# Database Config
+spring.datasource.url=${DB_URL:jdbc:mysql://localhost:3306/event_registration_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+spring.datasource.username=${DB_USERNAME:root}
+spring.datasource.password=${DB_PASSWORD:}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA / Hibernate Config
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# Logging
+logging.level.org.springframework.web=INFO
+logging.level.com.eventagent=DEBUG
+
+# External Service Credentials
+# Set via environment variable 'EXTERNAL_SERVICE_API_KEY'
+external.service.api-key=${EXTERNAL_SERVICE_API_KEY:}
