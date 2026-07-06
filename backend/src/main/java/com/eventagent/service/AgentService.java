@@ -40,7 +40,7 @@ public class AgentService {
     private final ChatMessageRepository chatMessageRepository;
     private final EligibilityService eligibilityService;
 
-    @Value("${external.service.api-key}")
+    @Value("${external.service.api-key:}")
     private String geminiApiKey;
 
     @Autowired

@@ -49,7 +49,6 @@ yarn-error.log*
 *.key
 
 # Spring Boot secrets — never commit real credentials
-**/application.properties
 **/application-*.properties
 !**/application.properties.example
 !**/application-*.properties.example
