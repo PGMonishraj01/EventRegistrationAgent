@@ -6,6 +6,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import javax.sql.DataSource;
 import java.net.URI;
 
@@ -85,9 +86,10 @@ public class DatabaseConfig {
             driverClassName = properties.getDriverClassName();
         }
 
-        System.out.println("[DatabaseConfig] Creating DataSource - url: " + url + ", driver: " + driverClassName + ", user: " + username);
+        System.out.println("[DatabaseConfig] Creating DataSource via DataSourceBuilder - url: " + url + ", driver: " + driverClassName + ", user: " + username);
 
-        return properties.initializeDataSourceBuilder()
+        // Build the DataSource cleanly without using properties.initializeDataSourceBuilder()
+        return DataSourceBuilder.create()
                 .url(url)
                 .username(username)
                 .password(password)
