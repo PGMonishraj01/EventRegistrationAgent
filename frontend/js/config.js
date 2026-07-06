@@ -17,3 +17,5 @@ const CONFIG = {
         return 'https://event-registration-backend.onrender.com';
     })()
 };
+
+console.log("[CONFIG] Active API Base URL:", CONFIG.API_BASE_URL);
