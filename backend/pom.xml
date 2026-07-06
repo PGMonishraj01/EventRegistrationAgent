@@ -40,6 +40,13 @@
             <scope>runtime</scope>
         </dependency>
         
+        <!-- PostgreSQL Connector -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        
         <!-- jBCrypt for secure password hashing -->
         <dependency>
             <groupId>org.mindrot</groupId>

@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8081/api/agent';
+const API_BASE = `${CONFIG.API_BASE_URL}/api/agent`;
 const CHAT_API = `${API_BASE}/chat`;
 const EVENTS_API = `${API_BASE}/events`;
 const SUGGEST_FORM_API = `${API_BASE}/suggest-form`;
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const profileForm = document.getElementById('profile-form');
         if (!profileForm) return;
         try {
-            const resp = await fetch(`http://localhost:8081/api/users/${userId}/profile`);
+            const resp = await fetch(`${CONFIG.API_BASE_URL}/api/users/${userId}/profile`);
             if (!resp.ok) return;
             const profile = await resp.json();
             setProfileFormValues(profile);
@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const resp = await fetch(`http://localhost:8081/api/users/${userId}/profile`, {
+                const resp = await fetch(`${CONFIG.API_BASE_URL}/api/users/${userId}/profile`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dto)

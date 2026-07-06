@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8081/api';
+const API_BASE = `${CONFIG.API_BASE_URL}/api`;
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check if user is already logged in, if so redirect to dashboard

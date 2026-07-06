@@ -1,5 +1,5 @@
 // history.js
-const HISTORY_API_BASE = 'http://localhost:8081/api/history';
+const HISTORY_API_BASE = `${CONFIG.API_BASE_URL}/api/history`;
 
 document.addEventListener('DOMContentLoaded', () => {
     const historyList = document.getElementById('history-list');

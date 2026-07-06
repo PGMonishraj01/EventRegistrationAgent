@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: event-registration-backend
+    runtime: docker
+    dockerContext: backend
+    dockerfilePath: Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8081
+      - key: DB_URL
+        value: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}
+      - key: DB_USERNAME
+        fromDatabase:
+          name: event-registration-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: event-registration-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: event-registration-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: event-registration-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: event-registration-db
+          property: database
+      - key: DB_DRIVER
+        value: org.postgresql.Driver
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      - key: EXTERNAL_SERVICE_API_KEY
+        sync: false
+
+databases:
+  - name: event-registration-db
+    databaseName: event_registration
+    user: event_user
+    plan: free
